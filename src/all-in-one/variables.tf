@@ -51,6 +51,15 @@ variable "address_space" {
   type        = list(string)
   description = "The address space(s) for the virtual network."
   default     = ["10.10.10.0/24"]
+
+  validation {
+    condition     = tonumber(split("/", var.address_space[0])[1]) <= 24
+    error_message = "The provided address space '${var.address_space[0]}' must be at least /24."
+  }
+  validation {
+    condition     = can(cidrhost(var.address_space[0], 32))
+    error_message = "Must be valid IPv4 CIDR."
+  }
 }
 
 variable "enable_high_availability" {

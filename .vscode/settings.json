@@ -12,6 +12,7 @@
     "networksecuritygroup",
     "privatednszone",
     "resourcegroup",
+    "roleassignment",
     "serverfarm",
     "storageaccount",
     "tfvars",
